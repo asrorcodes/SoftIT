@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #080808;
+    font-family: 'Inter';
+  }
+}
+
+.pagination.swiper-pagination-progressbar {
+  background: rgba(255, 255, 255, 0.2);
+  height: 4px;
+  border-radius: 2px;
+}
+
+.pagination .swiper-pagination-progressbar-fill {
+  background: #fff;
+  border-radius: 2px;
+}
+
+@layer components {
+  .heading-outline {
+    @apply text-[70px] font-bold uppercase tracking-[2px] leading-none;
+    color: #fff;
+    -webkit-text-stroke: 0px black;
+    text-shadow: none;
+  }
+  
+  .heading-outline-sm {
+    @apply text-[60px] font-bold uppercase tracking-[1px] leading-none;
+    color: #fff;
+    -webkit-text-stroke: 0px black;
+    text-shadow: none;
+  }
+  
+  .heading-outline-xs {
+    @apply text-[40px] font-bold uppercase tracking-[0.5px] leading-none;
+    color: #fff;
+    -webkit-text-stroke: 0px black;
+    text-shadow: none;
+  }
+}
+.portfolio-swiper .swiper-pagination-bullet {
+  background: #666;
+  opacity: 0.5;
+}
+
+.portfolio-swiper .swiper-pagination-bullet-active {
+  background: #fff;
+  opacity: 1;
+}
+
+.portfolio-swiper .swiper-button-next,
+.portfolio-swiper .swiper-button-prev {
+  color: #fff;
+  opacity: 1;
+  width: 44px;
+  height: 44px;
+}
+
+.portfolio-swiper .swiper-button-next:after,
+.portfolio-swiper .swiper-button-prev:after {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.portfolio-swiper .swiper-button-next:hover,
+.portfolio-swiper .swiper-button-prev:hover {
+  color: #D14291;
+}
+
+.portfolio-swiper .swiper-button-disabled {
+  opacity: 0.35;
+  cursor: auto;
+  pointer-events: none;
+}

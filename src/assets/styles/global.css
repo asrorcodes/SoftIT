@@ -1,0 +1,10 @@
+.pagination.swiper-pagination-progressbar {
+  background: rgba(255, 255, 255, 0.2);
+  height: 4px;
+  border-radius: 2px;
+}
+
+.pagination .swiper-pagination-progressbar-fill {
+  background: #fff;
+  border-radius: 2px;
+}

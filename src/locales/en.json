@@ -1,0 +1,88 @@
+{
+    "nav":{
+        "about": "About Us",
+        "services": "Services",
+        "portfolio": "Portfolio",
+        "vacancies": "Vacancies",
+        "blog":"Blog"
+
+    },
+    "home":{
+        "our_services": "Our Services",
+        "description":" Comprehensive solutions tailored to your business needs"
+    },
+    "about":{
+        "softIt":"About Soft IT",
+        "description":"Your premier source for cutting-edge technology insights and IT industry updates.",
+        "ourMission":"Our Mission",
+        "missionDesc":"At Soft IT, we're dedicated to bridging the gap between complex technology and everyday users. Our blog serves as a platform to  democratize IT knowledge, making it accessible to everyone from beginners to seasoned professionals.",
+        "whatWeCover":"What We Cover",
+        "softTrends":"Software Development Trends",
+        "webMobile":"Web & Mobile Technologies",
+        "cybersecurity":"Cybersecurity Insights",
+        "cloudComputing":"Cloud Computing",
+        "ai_ml":"AI & Machine Learning",
+        "it_career":"IT Career Guidance",
+        "ourTeam":"Our Team"
+    },
+    "service":{
+       "notFound": "Service Not Found",
+       "removed":"The service you're looking for doesn't exist or may have been removed.",
+       "back":"Back to Services",
+       "duration":"Duration",
+       "variesProject":"Varies by project",
+       "pricing":"Pricing",
+       "delivery":"Delivery",
+       "ready":"Ready to get started?",
+       "contact":"Contact us today to discuss how we can help with your",
+       "needs":"needs",
+       "contactUs":"Contact Us",
+       "browse":"Browse Other Services"
+    },
+    "contact":{
+        "project":"Do you have a project?",
+        "companyLabel":"Enter company name",
+        "company":"Company name",
+        "fullnameLabel":"Enter your name",
+        "fullname":"Your full name",
+        "phoneLabel":"Your phone  number",
+        "emailLabel":"Enter your email",
+        "email":"Your email",
+        "messageLabel":"Message",
+        "message":"Write your message...",
+        "submit":"Submit",
+        "projectType":"Type of project",
+        "back":"Back",
+        "staff":"After filling out this information, our responsible employees will contact you."
+    },
+    "vacancy":{
+        "notFound": "Vacancy Not Found",
+        "removed":"The vacancy you're looking for doesn't exist or may have been removed.",
+        "schedule":"Work Schedule",
+        "days":"Days",
+        "hours":"Hours",
+        "requirements":"Requirements",
+        "tasks":"Tasks",
+        "conditions":"Conditions",
+        "apply":"Apply for this position",
+        "fullName":"Full name",
+        "enterName":"Enter your full name",
+        "uploadCV":"Upload your CV",
+        "phone":"Your phone number",
+        "vacancy":"Vacancy",
+        "cv":"Your CV",
+        "select":"Select your vacancy",
+        "submit":"Submit"
+    },
+    "portfolioPage":{
+        "company":"Company",
+        "year":"Year",
+        "type":"Type",
+        "overview":"Overview"
+    },
+    "explore_us": "Explore Us",
+    "portfolio": "Portfolio",
+    "view_more": "View More",
+ "allProjects":"All Projects",
+ "partners":"Partners"
+}

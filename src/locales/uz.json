@@ -1,0 +1,97 @@
+{
+    "nav":{
+
+        "about": "Biz haqimizda",
+        "services": "Xizmatlar",
+        "portfolio": "Portfolio",
+        "vacancies": "Vakansiyalar",
+        "blog":"Blog"
+
+    },
+    "home":{
+        "our_services": "Bizning Xizmatlarimiz",
+        "description":"Biznes yo‘nalishlaringizga moslashtirilgan yechimlarning to‘liq spektri"
+
+    },
+    "about": {
+        "softIt": "Soft IT haqida",
+        "description": "Ilg'or texnologiyalar va IT sanoati yangiliklari haqidagi asosiy manbaingiz.",
+        "ourMission": "Bizning maqsadimiz",
+        "missionDesc": "Soft IT'da biz murakkab texnologiyalar va kundalik foydalanuvchilar o'rtasidagi bo'shliqni to'ldirishga intilamiz. Bizning blog IT bilimlarini demokratlashtirish uchun platforma bo'lib xizmat qiladi, uni boshlang'ich darajadan professional darajagacha bo'lgan barcha uchun qulay qiladi.",
+        "whatWeCover": "Biz nimalarni qamrab olamiz",
+        "softTrends": "Dasturiy ta'minot ishlab chiqish tendensiyalari",
+        "webMobile": "Veb va mobil texnologiyalar",
+        "cybersecurity": "Kiberhavfsizlik bo'yicha tushunchalar",
+        "cloudComputing": "Bulutli hisoblash",
+        "ai_ml": "Sun'iy intellekt va mashinali o'rganish",
+        "it_career": "IT karyera bo'yicha yo'riqnoma",
+        "ourTeam": "Bizning jamoa"
+    },
+    "service":{
+        "notFound": "Xizmat topilmadi",
+        "removed": "Siz qidirayotgan xizmat mavjud emas yoki o'chirilgan",
+        "back": "Xizmatlarga qaytish",
+        "duration": "Davomiyligi",
+        "variesProject": "Loyihaga qarab o'zgaradi",
+        "pricing": "Narxi",
+        "delivery": "Yetkazib berish",
+        "ready": "Boshlashga tayyormisiz?",
+        "contact": "Biz bilan bugun bog'laning va sizning",
+        "needs": "ehtiyojlaringizga qanday yordam bera olishimizni muhokama qiling",
+        "contactUs": "Biz bilan bog'laning",
+        "browse": "Boshqa xizmatlarni ko'rish"
+    },
+    "contact":{
+        "project": "Loyihangiz bormi?",
+        "companyLabel": "Kompaniya nomini kiriting",
+        "company": "Kompaniya nomi",
+        "fullnameLabel": "Ismingizni kiriting",
+        "fullname": "To'liq ismingiz",
+        "phoneLabel": "Telefon raqamingiz",
+        "emailLabel": "Emailingizni kiriting",
+        "email": "Emailingiz",
+        "messageLabel": "Xabar",
+        "message": "Xabaringizni yozing...",
+        "submit": "Yuborish",
+    "projectType":"Loyiha turi",
+      "back":"Orqaga",
+        "staff":"Ushbu ma’lumotlarni to‘ldirganingizdan so‘ng, mas’ul xodimlarimiz siz bilan bog‘lanishadi."
+
+    },
+   "vacancy":{
+        "notFound": "Vakansiya topilmadi",
+        "removed": "Siz qidirayotgan vakansiya mavjud emas yoki o'chirilgan",
+        "schedule": "Ish jadvali",
+        "days": "Kunlar",
+        "hours": "Soatlar",
+        "requirements": "Talablar",
+        "tasks": "Vazifalar",
+        "conditions": "Shartlar",
+        "apply": "Ushbu lavozimga ariza topshirish",
+        "fullName": "To'liq ism",
+        "enterName": "To'liq ismingizni kiriting",
+        "uploadCV": "Rezyume yuklash",
+        "phone": "Telefon raqamingiz",
+        "vacancy": "Vakansiya",
+        "cv": "Rezyumengiz",
+        "select": "Vakansiyani tanlang",
+        "submit":"Yuborish"
+    },
+    "portfolioPage":{
+        "company":"Kompaniya",
+        "year":"Yil",
+        "type":"Tur",
+        "overview":"Qisqacha"
+
+    },
+    "explore_us": "Biz haqimizda",
+    "portfolio": "Portfolio",
+    "view_more": "Ko‘proq",
+ "allProjects":"Barcha Loyihalar",
+ "partners":"Hamkorlar"
+
+
+
+
+
+}
