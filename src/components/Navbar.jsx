@@ -1,28 +1,30 @@
 import { NavLink, useLocation } from "react-router-dom";
 import MainLogo from "../assets/logos/MainLogo.svg";
 import LanguageDropdown from "./LanguageDropdown";
-import Background from "../assets/images/background.png";
-import { useTranslation  } from "react-i18next";
+import Background from "../assets/images/Background.png";
+import { useTranslation } from "react-i18next";
 import { useState } from "react";
 
 const Navbar = () => {
   const { t } = useTranslation();
   const location = useLocation();
-  const isHomePage = location.pathname === '/';
+  const isHomePage = location.pathname === "/";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   return (
-    <div className="w-full bg-[#080808] z-30 top-0 left-0 sticky  text-white px-6 py-4 shadow-md"  style={{
-      ...(isHomePage && {
-        background: `url(${Background})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      })
-    }}
-  >
+    <div
+      className="w-full bg-[#080808] z-30 top-0 left-0 sticky  text-white px-6 py-4 shadow-md"
+      style={{
+        ...(isHomePage && {
+          background: `url(${Background})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }),
+      }}
+    >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <NavLink to="/">
@@ -30,7 +32,7 @@ const Navbar = () => {
         </NavLink>
         <button
           onClick={toggleMenu}
-className="hidden mid:block 912:hidden  text-white focus:outline-none"
+          className="hidden mid:block 912:hidden  text-white focus:outline-none"
         >
           <svg
             className="w-6 h-6"
@@ -86,25 +88,23 @@ className="hidden mid:block 912:hidden  text-white focus:outline-none"
               href="tel:+998993731717"
               className="font-semibold text-[20px] text-gray-400 top-1 hover:text-gray-200 transition relative "
             >
-              (+998) 99 {''}
-              <span className="text-gray-200 ">
-              373 17 17
-                </span>
+              (+998) 99 {""}
+              <span className="text-gray-200 ">373 17 17</span>
             </a>
           </li>
         </ul>
         {/* Mobile Menu */}
         <div
           className={`${
-            isMenuOpen ? 'flex' : 'hidden'
+            isMenuOpen ? "flex" : "hidden"
           }  absolute top-full left-0 right-0 bg-[#080808] flex-col py-4 shadow-lg`}
           style={{
             ...(isHomePage && {
               background: `url(${Background})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            })
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }),
           }}
         >
           {[
@@ -119,16 +119,14 @@ className="hidden mid:block 912:hidden  text-white focus:outline-none"
               onClick={() => setIsMenuOpen(false)}
               className={({ isActive }) =>
                 `text-gray-300 uppercase  transition py-3 text-lg w-full text-center ${
-                  isActive
-                    ? "underline border-gray-300"
-                    : "hover:bg-gray-800"
+                  isActive ? "underline border-gray-300" : "hover:bg-gray-800"
                 }`
               }
             >
               {link.label}
             </NavLink>
           ))}
-          
+
           {/* Phone number in mobile menu */}
           <a
             href="tel:+998993731717"
@@ -136,7 +134,7 @@ className="hidden mid:block 912:hidden  text-white focus:outline-none"
           >
             (+998) 99 <span className="text-gray-200">373 17 17</span>
           </a>
-          
+
           {/* Language Dropdown in mobile menu */}
           <div className="py-3 w-full flex justify-center">
             <LanguageDropdown />
