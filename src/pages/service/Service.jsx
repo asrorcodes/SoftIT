@@ -13,7 +13,8 @@ import { useTranslation } from 'react-i18next';
 import { serviceDetails } from '../../data/serviceDetails';
 import { memo } from 'react';
 import SEO from '../../components/SEO';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 const serviceIcons = {
   web: FaCode,
@@ -28,19 +29,42 @@ const serviceIcons = {
 
 const Service = () => {
   const { t, i18n } = useTranslation();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
 
-  // Animation variants for fade-in and staggered effects
+  // Enhanced animation variants for fade-in and staggered effects
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.2, delayChildren: 0.3 },
+      transition: { staggerChildren: 0.15, delayChildren: 0.2 },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeInOut' } },
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      scale: 1, 
+      transition: { 
+        duration: 0.6, 
+        ease: [0.22, 1, 0.36, 1] // Custom easing for smoother, bouncy feel
+      } 
+    },
+  };
+
+  // Header specific animation
+  const headerVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { 
+        duration: 0.6, 
+        ease: 'easeOut' 
+      } 
+    },
   };
 
   return (
@@ -58,25 +82,46 @@ const Service = () => {
             className="text-center mb-16"
             initial="hidden"
             animate="visible"
-            variants={itemVariants}
+            variants={headerVariants}
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-500">
+            <motion.h2 
+              className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-transparent bg-clip-text text-white"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
+              whileHover={{ scale: 1.02 }}
+            >
               {t('nav.services')}
-            </h2>
-            <p className="mt-4 text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+            </motion.h2>
+            <motion.p 
+              className="mt-4 text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
               {t('home.description')}
-            </p>
+            </motion.p>
           </motion.header>
 
           {/* Services Grid */}
           <motion.div
+            ref={ref}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             variants={containerVariants}
             initial="hidden"
-            animate="visible"
+            animate={isInView ? "visible" : "hidden"}
           >
             {serviceDetails.map((service, index) => (
-              <motion.div key={service.id} variants={itemVariants}>
+              <motion.div 
+                key={service.id} 
+                variants={itemVariants}
+                whileHover={{ 
+                  y: -5, 
+                  scale: 1.02, 
+                  transition: { duration: 0.3, ease: 'easeOut' } 
+                }}
+                whileTap={{ scale: 0.98 }}
+              >
                 <ServiceCard
                   url={`/services/${service.id}`}
                   title={
@@ -97,21 +142,6 @@ const Service = () => {
                 />
               </motion.div>
             ))}
-          </motion.div>
-
-          {/* Call to Action */}
-          <motion.div
-            className="text-center mt-16"
-            initial="hidden"
-            animate="visible"
-            variants={itemVariants}
-          >
-            <a
-              href="/services/all"
-              className="inline-block px-8 py-3 bg-gradient-to-r from-indigo-500 to-blue-600 text-white rounded-full font-medium hover:from-indigo-600 hover:to-blue-700 hover:shadow-lg transition-all duration-300"
-            >
-              {t('services.viewAll')}
-            </a>
           </motion.div>
         </section>
       </div>

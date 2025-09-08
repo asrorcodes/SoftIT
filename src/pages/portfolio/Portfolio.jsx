@@ -6,11 +6,39 @@ import { mockProjects } from "../../data/mockProjects";
 import { useTranslation } from "react-i18next";
 import { mockCategories } from "../../data/mockCategories";
 import SEO from "../../components/SEO";
+import { motion, AnimatePresence, useInView } from "framer-motion";
+import { useRef } from "react";
+
 const Portfolio = () => {
   const { t } = useTranslation();
   const allProjectsTag = "All Projects";
   const [activeTag, setActiveTag] = useState(allProjectsTag);
-  const [filteredProjects, setFilteredProjects] = useState([]);
+  const [filteredProjects, setFilteredProjects] = useState(mockProjects);
+
+  // Animation variants for header
+  const headerVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { 
+        duration: 0.6, 
+        ease: 'easeOut' 
+      } 
+    },
+  };
+
+  // Animation variants for portfolio container
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+    },
+  };
+
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   const tagItems = [
     allProjectsTag,
@@ -37,9 +65,14 @@ const Portfolio = () => {
       />
       <section className={classNames("py-16")}>
         <div className="text-center mb-8">
-          <h1 className="heading-outline-xs md:heading-outline-sm lg:heading-outline my-8">
+          <motion.h1 
+            className="heading-outline-xs md:heading-outline-sm lg:heading-outline my-8"
+            initial="hidden"
+            animate="visible"
+            variants={headerVariants}
+          >
             {t("nav.portfolio")}
-          </h1>
+          </motion.h1>
         </div>
         <div className="container mx-auto">
           <Tags
@@ -47,10 +80,21 @@ const Portfolio = () => {
             onClickTag={setActiveTag}
             activeTag={activeTag}
           />
-          <PortfolioComponent
-            plainLayout={activeTag !== allProjectsTag}
-            projects={filteredProjects}
-          />
+          <motion.div
+            ref={ref}
+            className="mt-8"
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            <AnimatePresence mode="wait">
+              <PortfolioComponent
+                key={activeTag} // Unique key to trigger AnimatePresence
+                plainLayout={activeTag !== allProjectsTag}
+                projects={filteredProjects}
+              />
+            </AnimatePresence>
+          </motion.div>
         </div>
       </section>
     </>

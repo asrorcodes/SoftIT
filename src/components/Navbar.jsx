@@ -3,19 +3,32 @@ import MainLogo from "../assets/logos/MainLogo.svg";
 import LanguageDropdown from "./LanguageDropdown";
 import Background from "../assets/images/Background.png";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Navbar = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const isHomePage = location.pathname === "/";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  // Close menu on resize to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) { // md breakpoint
+        setIsMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div
-      className="w-full bg-[#080808] z-30 top-0 left-0 sticky  text-white px-6 py-4 shadow-md"
+      className="w-full bg-[#080808] z-30 top-0 left-0 sticky text-white px-4 md:px-6 py-4 shadow-md"
       style={{
         ...(isHomePage && {
           background: `url(${Background})`,
@@ -28,11 +41,14 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <NavLink to="/">
-          <img src={MainLogo} alt="SoftIT" className="w-36 cursor-pointer" />
+          <img src={MainLogo} alt="SoftIT" className="w-32 md:w-36 cursor-pointer" />
         </NavLink>
+
+        {/* Hamburger Button */}
         <button
           onClick={toggleMenu}
-          className="hidden mid:block 912:hidden  text-white focus:outline-none"
+          className="md:hidden text-white focus:outline-none p-2 rounded-md hover:bg-gray-700 transition-colors"
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         >
           <svg
             className="w-6 h-6"
@@ -58,8 +74,8 @@ const Navbar = () => {
           </svg>
         </button>
 
-        {/* Navigation Links */}
-        <ul className="flex mid:hidden  space-x-8 text-sm font-medium">
+        {/* Desktop Navigation Links */}
+        <ul className="hidden md:flex space-x-8 text-sm font-medium">
           {[
             { to: "/about", label: t("nav.about") },
             { to: "/service", label: t("nav.services") },
@@ -70,10 +86,10 @@ const Navbar = () => {
               <NavLink
                 to={link.to}
                 className={({ isActive }) =>
-                  `text-gray-300 uppercase transition pb-1 text-lg ${
+                  `text-gray-300 uppercase transition pb-1 text-lg hover:text-white ${
                     isActive
-                      ? "border-b-2 border-gray-300"
-                      : "hover:border-b hover:border-gray-500"
+                      ? "border-b-2 border-white text-white"
+                      : "hover:border-b-2 hover:border-gray-400"
                   }`
                 }
               >
@@ -83,23 +99,31 @@ const Navbar = () => {
           ))}
 
           {/* Phone number - Call on click */}
-          <li>
+          <li className="ml-4">
             <a
               href="tel:+998993731717"
-              className="font-semibold text-[20px] text-gray-400 top-1 hover:text-gray-200 transition relative "
+              className="font-semibold text-lg md:text-xl text-gray-300 hover:text-white transition relative"
             >
-              (+998) 99 {""}
-              <span className="text-gray-200 ">373 17 17</span>
+              (+998) 99{" "}
+              <span className="text-white">373 17 17</span>
             </a>
           </li>
         </ul>
+
+        {/* Mobile Menu Overlay */}
+        {isMenuOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden" onClick={toggleMenu}></div>
+        )}
+
         {/* Mobile Menu */}
         <div
           className={`${
-            isMenuOpen ? "flex" : "hidden"
-          }  absolute top-full left-0 right-0 bg-[#080808] flex-col py-4 shadow-lg`}
+            isMenuOpen ? "translate-x-0" : "-translate-x-full"
+          } fixed top-0 left-0 h-full w-80 bg-[#080808] flex-col py-4 shadow-xl z-50 transition-transform duration-300 ease-in-out md:hidden overflow-y-auto ${
+            isHomePage ? "bg-[#080808]" : ""
+          }`}
           style={{
-            ...(isHomePage && {
+            ...(isHomePage && isMenuOpen && {
               background: `url(${Background})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
@@ -107,42 +131,73 @@ const Navbar = () => {
             }),
           }}
         >
-          {[
-            { to: "/about", label: t("nav.about") },
-            { to: "/service", label: t("nav.services") },
-            { to: "/portfolio", label: t("nav.portfolio") },
-            { to: "/vacancies", label: t("nav.vacancies") },
-          ].map((link) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              onClick={() => setIsMenuOpen(false)}
-              className={({ isActive }) =>
-                `text-gray-300 uppercase  transition py-3 text-lg w-full text-center ${
-                  isActive ? "underline border-gray-300" : "hover:bg-gray-800"
-                }`
-              }
-            >
-              {link.label}
+          {/* Mobile Logo */}
+          <div className="p-4 border-b border-gray-700">
+            <NavLink to="/" onClick={toggleMenu}>
+              <img src={MainLogo} alt="SoftIT" className="w-32 cursor-pointer" />
             </NavLink>
-          ))}
-
-          {/* Phone number in mobile menu */}
-          <a
-            href="tel:+998993731717"
-            className="font-semibold text-[20px] text-gray-400 py-3 hover:text-gray-200 transition w-full text-center"
-          >
-            (+998) 99 <span className="text-gray-200">373 17 17</span>
-          </a>
-
-          {/* Language Dropdown in mobile menu */}
-          <div className="py-3 w-full flex justify-center">
-            <LanguageDropdown />
+            <button
+              onClick={toggleMenu}
+              className="absolute top-4 right-4 text-white focus:outline-none p-1 rounded-md hover:bg-gray-700 transition-colors"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
           </div>
+
+          {/* Navigation Links */}
+          <nav className="flex-1 px-4 py-6 space-y-2">
+            {[
+              { to: "/about", label: t("nav.about") },
+              { to: "/service", label: t("nav.services") },
+              { to: "/portfolio", label: t("nav.portfolio") },
+              { to: "/vacancies", label: t("nav.vacancies") },
+            ].map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                onClick={() => setIsMenuOpen(false)}
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-3 rounded-lg text-gray-300 uppercase text-lg font-medium transition ${
+                    isActive
+                      ? "bg-gray-700 text-white border border-gray-400"
+                      : "hover:bg-gray-700 hover:text-white"
+                  }`
+                }
+              >
+                {link.label}
+              </NavLink>
+            ))}
+
+            {/* Phone number in mobile menu */}
+            <a
+              href="tel:+998993731717"
+              onClick={() => setIsMenuOpen(false)}
+              className="flex items-center px-4 py-3 rounded-lg font-semibold text-xl text-gray-300 hover:bg-gray-700 hover:text-white transition w-full"
+            >
+              (+998) 99 <span className="text-white ml-1">373 17 17</span>
+            </a>
+
+            {/* Language Dropdown in mobile menu */}
+            <div className="px-4 py-3">
+              <LanguageDropdown />
+            </div>
+          </nav>
         </div>
 
-        {/* Language Dropdown */}
-        <div className="hidden mid:hidden tablet:hidden 853:hidden md:block">
+        {/* Desktop Language Dropdown */}
+        <div className="hidden md:block">
           <LanguageDropdown />
         </div>
       </div>

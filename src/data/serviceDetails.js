@@ -115,20 +115,5 @@ export const serviceDetails = [
     },
     icon: "analytics", // matches the key in serviceIcons
   },
-  // {
-  //   id: "web-development",
-  //   title: "Web Development",
-  //   category: "Development",
-  //   description: "Brief description...",
-  //   longDescription: "Extended detailed description...",
-  //   duration: "4-8 weeks",
-  //   pricing: "Starting at $5,000",
-  //   delivery: "Weekly milestones",
-  //   features: [
-  //     "Responsive design",
-  //     "SEO optimized",
-  //     "CMS integration",
-  //     "Performance monitoring",
-  //   ],
-  // },
+
 ];

@@ -57,12 +57,6 @@ const ServicesSection = () => {
             />
           ))}
         </div>
-
-        {/* <div className="text-center mt-16">
-          <button className="px-8 py-3 bg-transparent border-2 border-white text-white rounded-full hover:bg-white hover:text-black transition-colors duration-300 font-medium">
-            View All Services
-          </button>
-        </div> */}
       </div>
     </section>
     </>
